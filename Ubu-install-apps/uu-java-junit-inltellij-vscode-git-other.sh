@@ -38,4 +38,10 @@ sudo snap install --classic code # or code-insiders
 
 #git
 sudo apt install -y git
+sudo snap install gitkraken --classic
 
+#other cool stuff
+sudo snap install spotify
+sudo snap install teams-for-linux
+sudo snap install caprine #messenger
+sudo snap install skype --classic
