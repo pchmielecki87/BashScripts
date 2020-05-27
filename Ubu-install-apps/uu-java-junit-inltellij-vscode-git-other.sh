@@ -11,6 +11,7 @@ sudo apt install snapd -y
 
     #add ppa
     sudo add-apt-repository ppa:linuxuprising/java
+    sudo apt update -y
 
         #java 8
         sudo apt install -y openjdk-11-jre #-headless #JRE > /usr/lib/jvm/java-11-openjdk-adm64
