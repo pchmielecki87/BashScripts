@@ -1,4 +1,5 @@
 #!/bin/sh
+#sudo sh -x <script_name>
 #working on ubu16+ (for Ubu 16 convert apt to apt-get)
 #based on docker docs > https://docs.docker.com/engine/install/ubuntu/
 #based on kubernetes docs > https://kubernetes.io/docs/tasks/tools/install-kubectl/ 
