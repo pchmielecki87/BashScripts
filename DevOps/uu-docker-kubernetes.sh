@@ -38,39 +38,72 @@ sudo apt update -y && sudo apt upgrade -y
 
 ##kubernetes 
 
-    #curl
+    #install prerequisites
     sudo apt install curl -y
 
-    #add key and install
-    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+    ##install microk8s
+    #MicroK8s is a small, fast, secure, single node Kubernetes that installs on just about any Linux box. 
+    #Use it for offline development, prototyping, testing, or use it on a VM as a small, cheap, reliable k8s for CI/CD. 
+    #It's also a great k8s for appliances - develop your IoT apps for k8s and deploy them to MicroK8s on your boxes.
 
-cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
-deb https://apt.kubernetes.io/ kubernetes-xenial main
-EOF
+    #install
+    sudo snap install microk8s --classic
 
-    sudo apt-get update -y
-    sudo apt-get install -y kubelet kubeadm kubectl
-    sudo apt-mark hold kubelet kubeadm kubectl
+    #add needed permissions
+    sudo chown -f -R vagrant ~/.kube
+    sudo usermod -a -G microk8s vagrant
+
+    #create an alias 
+    snap alias microk8s.kubectl kubectl
+
+    #restart vm
+    sudo shutdown -r 0
+
+#######################################################################################################
+#old way to install kubernetes and minikube (need virtualbox cpu virtualization enabled which is by default disabled)
+
+    #prerequisites
+#    sudo apt install virtualbox -y
+#    sudo apt install virtualbox-ext-pack -y #| echo virtualbox-ext-pack/license select true | sudo debconf-set-selections
+    
+        #minikube
+#        wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+#        sudo cp minikube-linux-amd64 /usr/local/bin/minikube
+#        sudo chmod 755 /usr/local/bin/minikube
+#        echo "Minikube version"
+#        minikube version
+#        minikube start --driver=virtualbox
+
+    #add key and install k8s
+#    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+#cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+#deb https://apt.kubernetes.io/ kubernetes-xenial main
+#EOF
+
+#    sudo apt-get update -y
+#    sudo apt-get install -y kubelet kubeadm kubectl
+#    sudo apt-mark hold kubelet kubeadm kubectl
 
     #restart kubenetes daemon
-    systemctl daemon-reload
-    systemctl restart kubelet
+#    sudo systemctl daemon-reload
+#    sudo systemctl restart kubelet
 
-    #disable swap memory (if running) on both the nodes
-    sudo swapoff -a
+#    #disable swap memory (if running) on both the nodes
+#    sudo swapoff -a
 
     #set unique hostnames on each node
-    sudo hostnamectl set-hostname master-node
-    sudo hostnamectl set-hostname slave-node
+#    sudo hostnamectl set-hostname master-node
+#    sudo hostnamectl set-hostname slave-node
 
     #init
-    sudo kubeadm init
-    mkdir -p $HOME/.kube
-    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+#    sudo kubeadm init
+#    mkdir -p $HOME/.kube
+#    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+#    sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
     #deploy pod network through the master node
-    sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+#    sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
 #########################################################################################################################
 #commented because is not workind due to env var and kube.config issues
@@ -89,14 +122,4 @@ EOF
 #    sudo snap install kubefed --classic         #Kubernetes cluster federation manager
 #    sudo snap install helm --classic            #Kubernetes package manager
 
-##(optional) microk8s
 
-    #MicroK8s is a small, fast, secure, single node Kubernetes that installs on just about any Linux box. 
-    #Use it for offline development, prototyping, testing, or use it on a VM as a small, cheap, reliable k8s for CI/CD. 
-    #It's also a great k8s for appliances - develop your IoT apps for k8s and deploy them to MicroK8s on your boxes.
-
-    #install
-    #sudo snap install microk8s --classic
-
-    #create an alias 
-    #snap alias microk8s.kubectl kubectl
