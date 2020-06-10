@@ -35,6 +35,12 @@ sudo apt install junit4 -y
 #intellij-latest
 sudo snap install --classic intellij-idea-community
 
+#python
+sudo apt install -y software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install -y python3.8
+sudo snap install pycharm-community --classic
+
 #vscode-latest
 sudo snap install --classic code # or code-insiders
 
