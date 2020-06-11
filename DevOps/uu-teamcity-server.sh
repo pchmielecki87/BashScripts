@@ -1,4 +1,5 @@
 #!/bin/sh
+#sudo sh -x <script_name>
 #working on ubu18+
 
 #update and upgrade

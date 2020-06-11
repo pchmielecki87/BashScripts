@@ -1,4 +1,5 @@
 #!/bin/sh
+#sudo sh -x <script_name>
 #working on ubu19
 #https://docs.microsoft.com/en-us/dotnet/core/install/linux-package-manager-ubuntu-1910
 
