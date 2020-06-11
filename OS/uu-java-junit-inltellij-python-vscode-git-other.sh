@@ -39,6 +39,7 @@ sudo snap install --classic intellij-idea-community
 sudo apt install -y software-properties-common
 sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt install -y python3.8
+sudo apt install -y python3-pip
 sudo snap install pycharm-community --classic
 
 #vscode-latest
@@ -48,17 +49,22 @@ sudo snap install --classic code # or code-insiders
 sudo apt install -y git
 sudo snap install gitkraken --classic
 
-#chrome chromedriver
-sudo curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
-sudo echo "deb [arch=amd64]  http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
-sudo apt-get -y update
-sudo apt-get -y install google-chrome-stable
-wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
+#chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+
+#chromedriver and selenium
+sudo apt-get install -y unzip xvfb libxi6 libgconf-2-4
+wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip #fit proper version
 unzip chromedriver_linux64.zip
 sudo mv chromedriver /usr/bin/chromedriver
 sudo chown root:root /usr/bin/chromedriver
 sudo chmod +x /usr/bin/chromedriver
-
+    echo "Check ChromeDriver version"
+    chromedriver --version
+pip3 install selenium
+    echo "Check Selenium version"
+    pip3 freeze | grep selenium
 
 #other cool stuff
 sudo snap install spotify
