@@ -14,6 +14,7 @@ git \
 --cask visual-studio \
 --cask powershell \
 dotnet \
+--cask dotnet-sdk \
 azure-cli \
 docker \
 kubernetes-cli \
