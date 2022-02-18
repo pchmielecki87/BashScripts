@@ -4,8 +4,9 @@
 # brew update
 brew update
 
-# brew update casks
+# brew add repos
 brew tap homebrew/cask-versions
+brew tap isen-ng/dotnet-sdk-versions
 
 # install dev-tools
 brew install \
@@ -14,7 +15,7 @@ git \
 --cask visual-studio \
 --cask powershell \
 dotnet \
---cask dotnet-sdk \
+--cask dotnet-sdk6-0-100
 azure-cli \
 docker \
 kubernetes-cli \
