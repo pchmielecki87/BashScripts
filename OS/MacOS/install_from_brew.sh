@@ -10,7 +10,6 @@ brew tap homebrew/cask-versions
 # install dev-tools
 brew install \
 git \
---cask iterm2 \
 --cask visual-studio-code \
 --cask visual-studio \
 --cask powershell \
@@ -19,6 +18,9 @@ azure-cli \
 docker \
 kubernetes-cli \
 helm
+
+## oh my zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # install fancy tools
 brew install \
