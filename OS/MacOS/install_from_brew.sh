@@ -10,6 +10,7 @@ brew tap homebrew/cask-versions
 # install dev-tools
 brew install \
 git \
+--cask iterm2 \
 --cask visual-studio-code \
 --cask visual-studio \
 --cask powershell \
